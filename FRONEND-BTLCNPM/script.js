@@ -1,79 +1,110 @@
-let cart = [];
+document.addEventListener("DOMContentLoaded", function () {
+    // Ẩn/hiện menu danh mục
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("hidden");
+    }
 
-function toggleMenu() {
-    document.getElementById("menu").classList.toggle("hidden");
-}
-
-function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
-}
-
-const foodItems = ["Coca Cola", "Pepsi", "Pizza", "Bánh ngọt"];
-function scrollToProduct(productName) {
-    let products = document.querySelectorAll(".product");
-
-    for (let product of products) {
-        if (product.dataset.name.toLowerCase() === productName.toLowerCase()) {
-            product.scrollIntoView({ behavior: "smooth", block: "center" });
-            product.style.border = "2px solid #d32f2f"; // Tô viền để nổi bật sản phẩm
-            setTimeout(() => product.style.border = "", 2000); // Xóa viền sau 2 giây
-            break;
+    // Cuộn đến danh mục được chọn
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
         }
     }
-}
 
-function showSuggestions() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let suggestionsBox = document.getElementById("suggestions");
-
-    if (input === "") {
-        suggestionsBox.style.display = "none";
-        return;
-    }
-
-    let suggestions = foodItems.filter(item => item.toLowerCase().includes(input));
-    suggestionsBox.innerHTML = "";
-    suggestionsBox.style.display = suggestions.length > 0 ? "block" : "none";
-
-    suggestions.forEach(suggestion => {
-        let div = document.createElement("div");
-        div.textContent = suggestion;
-        div.onclick = () => {
-            document.getElementById("search").value = suggestion;
+    // Xử lý tìm kiếm gợi ý
+    function showSuggestions() {
+        const searchInput = document.getElementById("search").value.toLowerCase();
+        const suggestionsBox = document.getElementById("suggestions");
+        const products = document.querySelectorAll(".product");
+        
+        suggestionsBox.innerHTML = "";
+        if (searchInput.length === 0) {
             suggestionsBox.style.display = "none";
-            scrollToProduct(suggestion); // Gọi hàm cuộn đến sản phẩm
-        };
-        suggestionsBox.appendChild(div);
-    });
-}
+            return;
+        }
 
-function addToCart(name, price) {
-    let existingItem = cart.find(item => item.name === name);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ name, price, quantity: 1 });
+        let suggestions = [];
+        products.forEach(product => {
+            let name = product.getAttribute("data-name").toLowerCase();
+            if (name.includes(searchInput)) {
+                suggestions.push(name);
+            }
+        });
+
+        if (suggestions.length > 0) {
+            suggestionsBox.style.display = "block";
+            suggestions.forEach(suggestion => {
+                let div = document.createElement("div");
+                div.textContent = suggestion;
+                div.onclick = function () {
+                    document.getElementById("search").value = suggestion;
+                    suggestionsBox.style.display = "none";
+                };
+                suggestionsBox.appendChild(div);
+            });
+        } else {
+            suggestionsBox.style.display = "none";
+        }
     }
-    updateCart();
-}
 
-function updateCart() {
-    let cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = "";
-    let total = 0;
+    // Xử lý giỏ hàng
+    let cart = [];
+    const cartList = document.getElementById("cart-items");
+    const totalPriceEl = document.getElementById("total-price");
+    const emptyCartMsg = document.getElementById("empty-cart-msg");
 
-    cart.forEach(item => {
-        total += item.price * item.quantity;
-        let li = document.createElement("li");
-        li.innerHTML = `${item.name} - ${item.price} VND x ${item.quantity}`;
-        cartItems.appendChild(li);
-    });
+    function addToCart(name, price) {
+        const existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        updateCart();
+    }
 
-    document.getElementById("total-price").textContent = total;
-}
+    function updateCart() {
+        cartList.innerHTML = "";
+        let total = 0;
+        if (cart.length === 0) {
+            emptyCartMsg.style.display = "block";
+        } else {
+            emptyCartMsg.style.display = "none";
+        }
 
-function checkout() {
-    alert("Thanh toán thành công!");
-    cart = [];
-    updateCart();
-}
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            let li = document.createElement("li");
+            li.innerHTML = `${item.name} x${item.quantity} - ${item.price * item.quantity} VND 
+                <button onclick="removeFromCart(${index})">Xóa</button>`;
+            cartList.appendChild(li);
+        });
+
+        totalPriceEl.textContent = total.toLocaleString();
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Giỏ hàng đang trống!");
+            return;
+        }
+        alert("Thanh toán thành công!");
+        cart = [];
+        updateCart();
+    }
+
+    // Gán các hàm vào window để gọi từ HTML
+    window.toggleMenu = toggleMenu;
+    window.scrollToSection = scrollToSection;
+    window.showSuggestions = showSuggestions;
+    window.addToCart = addToCart;
+    window.removeFromCart = removeFromCart;
+    window.checkout = checkout;
+});
