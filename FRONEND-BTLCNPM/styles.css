@@ -1,0 +1,121 @@
+body {
+    font-family: Times, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff5f5;
+}
+
+header {
+    background: linear-gradient(90deg, #fff5f5, #ffffff);
+    color:black;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Forte', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar button {
+    background:#d32f2f;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    color:white;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+main {
+    margin-left: 220px;
+    padding: 20px;
+    width: calc(100% - 440px);
+}
+#payment-method {
+    width: 90%; /* Chiếm toàn bộ chiều rộng của phần giỏ hàng */
+    padding: 5px;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+    font-size: 1em; /* Kích thước chữ tự động thay đổi theo màn hình */
+}
+.cart {
+    width: 200px;
+    min-width: 150px; /* Đảm bảo không quá nhỏ */
+    max-width:200px; /* Giới hạn độ rộng tối đa */
+    background: white;
+    padding: 20px;
+    padding-top: 10px;
+    position: fixed;
+    right: 0;
+    top: 50px;
+    border: 2px solid #d32f2f;
+}
+#checkout{
+    margin-top:5px;
+    padding-top: 10px;
+}
+#total-price{
+    margin-top:10px;
+    margin-bottom:5px;
+    padding:10px;
+}
+#search {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.product img {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của sản phẩm */
+    height: 150px; /* Giữ chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh để vừa khung */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.product p {
+    margin: 5px 0;
+}
+
+.product button {
+    width: 100%;
+    margin-top: 10px;
+}
+.product {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung */
+    justify-content: space-between;
+}
+
+button {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
