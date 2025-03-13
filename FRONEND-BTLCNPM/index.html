@@ -11,7 +11,12 @@
         <div class="logo">
             <img src="https://miaart.vn/wp-content/uploads/2014/03/nha-hang.jpg" alt="Logo Nhà hàng N12">
         </div>
-        <h1>Nhà hàng N12</h1>
+        <h1 class="fire-text"> Nhà hàng N12</h1>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Tìm kiếm..." onkeyup="showSuggestions()">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+            <div id="suggestions" class="suggestions-box"></div>
+        </div>
     </header>
 
     <div class="container">
@@ -27,10 +32,7 @@
 
         <!-- Nội dung chính -->
         <main>
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Tìm kiếm món ăn..." onkeyup="showSuggestions()">
-                <div id="suggestions" class="suggestions-box"></div>
-            </div>
+            
 
             <section id="drinks">
                 <h2 class="section-title">Đồ uống</h2>
@@ -77,7 +79,7 @@
             <section id="foods">
                 <h2 class="section-title">Đồ ăn</h2>
                 <div class="product-list">
-                    <div class="product" data-name="Pizza" data-price="120000">
+                    <div class="product" data-name="Pizza" data-price="100000">
                         <img src="" alt="Pizza">
                         <p>Pizza</p>
                         <p>100,000 VND</p>
@@ -101,11 +103,11 @@
                         <p>40,000 VND</p>
                         <button onclick="addToCart('Cơm Rang Dưa Bò', 40000)">Thêm vào giỏ</button>
                     </div>
-                    <div class="product" data-name="Cua Hoàng Đế" data-price="200000">
+                    <div class="product" data-name="Cua Hoàng Đế" data-price="2000000">
                         <img src="images/pizza.jpg" alt="Cua Hoàng Đế">
                         <p>Cua Hoàng Đế</p>
                         <p>2,000,000 VND</p>
-                        <button onclick="addToCart('Cua Hoàng Đế', 200000)">Thêm vào giỏ</button>
+                        <button onclick="addToCart('Cua Hoàng Đế', 2000000)">Thêm vào giỏ</button>
                     </div>
                     <div class="product" data-name="Tôm Hùm Alaska" data-price="2500000">
                         <img src="images/pizza.jpg" alt="Tôm Hùm Alaska">
@@ -131,44 +133,52 @@
                         <p>25,000 VND</p>
                         <button onclick="addToCart('Xoài Chua', 25000)">Thêm vào giỏ</button>
                     </div>
-                    <div class="product-list">
-                        <div class="product" data-name="Nho Tươi" data-price="25000">
-                            <img src="images/xoai.jpg" alt="Nho Tươi">
-                            <p>Nho Tươi</p>
-                            <p>25,000 VND</p>
-                            <button onclick="addToCart('Nho Tươi', 25000)">Thêm vào giỏ</button>
-                        </div>
-                            <div class="product" data-name="Dưa Hấu" data-price="25000">
-                                <img src="images/xoai.jpg" alt="Dưa Hấu">
-                                <p>Dưa Hấu</p>
-                                <p>25,000 VND</p>
-                                <button onclick="addToCart('Dưa Hấu', 25000)">Thêm vào giỏ</button>
-                            </div>
-                                <div class="product" data-name="Kem Tươi" data-price="25000">
-                                    <img src="images/xoai.jpg" alt="Kem Tươi">
-                                    <p>Kem Tươi</p>
-                                    <p>25,000 VND</p>
-                                    <button onclick="addToCart('Kem Tươi', 25000)">Thêm vào giỏ</button>
-                                </div>
-                                    <div class="product" data-name="Dừa Non" data-price="25000">
-                                        <img src="images/xoai.jpg" alt="Dừa Non">
-                                        <p>Dừa Non</p>
-                                        <p>25,000 VND</p>
-                                        <button onclick="addToCart('Dừa Non', 25000)">Thêm vào giỏ</button>
-                                    </div>
-                                        <div class="product" data-name="Dâu Tây" data-price="25000">
-                                            <img src="images/xoai.jpg" alt="Dâu Tây">
-                                            <p>Dâu Tây</p>
-                                            <p>25,000 VND</p>
-                                            <button onclick="addToCart('Dâu Tây', 25000)">Thêm vào giỏ</button>
-                                        </div>
+            
+                    <div class="product" data-name="Nho Tươi" data-price="25000">
+                        <img src="images/nho.jpg" alt="Nho Tươi">
+                        <p>Nho Tươi</p>
+                        <p>25,000 VND</p>
+                        <button onclick="addToCart('Nho Tươi', 25000)">Thêm vào giỏ</button>
+                    </div>
+            
+                    <div class="product" data-name="Dưa Hấu" data-price="25000">
+                        <img src="images/dua-hau.jpg" alt="Dưa Hấu">
+                        <p>Dưa Hấu</p>
+                        <p>25,000 VND</p>
+                        <button onclick="addToCart('Dưa Hấu', 25000)">Thêm vào giỏ</button>
+                    </div>
+            
+                    <div class="product" data-name="Kem Tươi" data-price="25000">
+                        <img src="images/kem.jpg" alt="Kem Tươi">
+                        <p>Kem Tươi</p>
+                        <p>25,000 VND</p>
+                        <button onclick="addToCart('Kem Tươi', 25000)">Thêm vào giỏ</button>
+                    </div>
+            
+                    <div class="product" data-name="Dừa Non" data-price="25000">
+                        <img src="images/dua-non.jpg" alt="Dừa Non">
+                        <p>Dừa Non</p>
+                        <p>25,000 VND</p>
+                        <button onclick="addToCart('Dừa Non', 25000)">Thêm vào giỏ</button>
+                    </div>
+            
+                    <div class="product" data-name="Dâu Tây" data-price="25000">
+                        <img src="images/dau-tay.jpg" alt="Dâu Tây">
+                        <p>Dâu Tây</p>
+                        <p>25,000 VND</p>
+                        <button onclick="addToCart('Dâu Tây', 25000)">Thêm vào giỏ</button>
+                    </div>
                 </div>
             </section>
+            
         </main>
-        <!-- Giỏ hàng bên phải -->
+        <!-- Giỏ hàng bên phải -->  `
         <aside class="cart">
             <h2>Giỏ hàng</h2>
-            <ul id="cart-items"></ul>
+
+            <div class="cart-items-container">
+                <ul id="cart-items"></ul>
+            </div>
             <p id="empty-cart-msg"><i>Giỏ hàng trống</i></p>
             <p><strong>Tổng tiền:</strong> <span id="total-price">0</span>VND</p>
             <select id="payment-method">
