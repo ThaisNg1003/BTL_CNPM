@@ -6,11 +6,11 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
-
 header {
-    background: linear-gradient(90deg, #fff5f5, #ffffff);
-    color: black;
+    background: inherit;
+    color: white;
     padding: 20px;
+    text-align: center;
     text-align: center;
     font-size: 28px;
     font-weight: bold;
@@ -73,39 +73,62 @@ header {
 
 /* ===== THANH TÌM KIẾM ===== */
 .search-container {
-    position: relative;
-    width: 70%;
-    margin: 20px auto;
+    position: absolute;
+    width: 400px; /* Giảm kích thước */
+    display: flex;
+    left:40%;
+    align-items: center;
 }
 
 #search {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #d32f2f;
-    border-radius: 5px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+#search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    color: #888;
     font-size: 16px;
+}
+
+#search-btn:hover {
+    color: #555;
 }
 
 /* Gợi ý tìm kiếm */
 #suggestions {
     position: absolute;
     background: white;
-    width: 100%;
-    border: 1px solid #d32f2f;
-    border-top: none;
+    border: 1px solid #ddd;
+    max-width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     display: none;
     z-index: 1000;
 }
 
 .suggestion-item {
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.suggestion-item:hover {
-    background: #ffe6e6;
+.suggestion-item:hover,
+.suggestion-item.active {
+    background: #f0f0f0;
 }
+
+.no-result {
+    padding: 8px;
+    color: #888;
+    font-style: italic;
+}
+
 
 /* ===== SẢN PHẨM ===== */
 .product-list {
@@ -160,16 +183,6 @@ header {
 }
 
 /* ===== GIỎ HÀNG BÊN PHẢI ===== */
-.cart {
-    width: 220px;
-    background: white;
-    padding: 15px;
-    position: fixed;
-    right: 10px;
-    top: 50px;
-    border: 2px solid #d32f2f;
-    border-radius: 10px;
-}
 .cart h2 {
     text-align: center;
 }
@@ -196,7 +209,13 @@ header {
 #cart-items li button:hover {
     color: #b71c1c;
 }
-
+.cart-items-container {
+    max-height: 300px; /* Chiều cao tối đa */
+    overflow-y: auto;  /* Kích hoạt cuộn dọc */
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fff;
+}
 /* Tổng tiền */
 #total-price {
     display: block;
@@ -239,39 +258,68 @@ header {
     }
 }
 .cart {
-    width: 200px;
-    background: white;
-    padding: 15px;
     position: fixed;
-    right: 10px;
-    top: 20px;
-    border: 2px solid #d32f2f;
-    border-radius: 10px;
-    transition: width 0.3s, height 0.3s;
-    overflow: hidden;
-    height: 500px;
-    border-left: 2px solid #d32f2f;
-    transition: transform 0.3s ease-in-out;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    transition: width 0.3s ease;
 }
+
 .cart.collapsed {
     width: 50px;
-    height: 70px;
+    height: 50px;
+    overflow: hidden;
     padding: 5px;
     text-align: center;
-    transform: translateX(10%); /* Ẩn giỏ hàng khi thu nhỏ */
 }
+
 .cart.collapsed h2,
-.cart.collapsed ul,
-.cart.collapsed #total-price,
+.cart.collapsed .cart-items-container,
+.cart.collapsed p,
+.cart.collapsed select,
 .cart.collapsed #checkout {
     display: none;
 }
+
 #toggle-cart {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
     position: absolute;
     top: 5px;
-    right: 5px;
+    left: 5px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
 }
+.fire-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ff0000, #ff4500, #ff8c00);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+}
+
+.fire-text::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 140%;
+    height: 140%;
+    background: url('https://media.tenor.com/tq67kHtkTrkAAAAi/fire-flame.gif');
+    background-size: cover;
+    z-index: -1;
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    filter: blur(5px);
+}
+
+
