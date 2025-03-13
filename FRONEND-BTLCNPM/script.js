@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
             section.scrollIntoView({ behavior: "smooth" });
         }
     }
-
     // Xử lý tìm kiếm gợi ý
     function showSuggestions() {
         const searchInput = document.getElementById("search").value.toLowerCase();
@@ -64,7 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         updateCart();
     }
-
+    function toggleCart() {
+        const cart = document.querySelector(".cart");
+        cart.classList.toggle("collapsed");
+    }
+    
     function updateCart() {
         cartList.innerHTML = "";
         let total = 0;
@@ -81,15 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button onclick="removeFromCart(${index})">Xóa</button>`;
             cartList.appendChild(li);
         });
-
         totalPriceEl.textContent = total.toLocaleString();
     }
-
     function removeFromCart(index) {
         cart.splice(index, 1);
         updateCart();
     }
-
     function checkout() {
         if (cart.length === 0) {
             alert("Giỏ hàng đang trống!");
@@ -99,9 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
         cart = [];
         updateCart();
     }
-
     // Gán các hàm vào window để gọi từ HTML
     window.toggleMenu = toggleMenu;
+    window.toggleCart = toggleCart;
     window.scrollToSection = scrollToSection;
     window.showSuggestions = showSuggestions;
     window.addToCart = addToCart;
