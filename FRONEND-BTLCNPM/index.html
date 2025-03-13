@@ -33,13 +33,13 @@
             </div>
 
             <section id="drinks">
-                <h2>Đồ uống</h2>
+                <h2 class="section-title">Đồ uống</h2>
                 <div class="product-list">
                     <div class="product" data-name="Coca Cola" data-price="15000">
                         <img src="images/coca.jpg" alt="Coca Cola">
                         <p>Coca Cola</p>
                         <p>15,000 VND</p>
-                        <button onclick="addToCart('Trà chanh', 15000)">Thêm vào giỏ</button>
+                        <button onclick="addToCart('Cocacola', 15000)">Thêm vào giỏ</button>
                     </div>
                     <div class="product" data-name="Trà chanh" data-price="10000">
                         <img src="images/pepsi.jpg" alt="Trà chanh">
@@ -75,10 +75,10 @@
             </section>
 
             <section id="foods">
-                <h2>Đồ ăn</h2>
+                <h2 class="section-title">Đồ ăn</h2>
                 <div class="product-list">
                     <div class="product" data-name="Pizza" data-price="120000">
-                        <img src="images/pizza.jpg" alt="Pizza">
+                        <img src="" alt="Pizza">
                         <p>Pizza</p>
                         <p>100,000 VND</p>
                         <button onclick="addToCart('Pizza', 100000)">Thêm vào giỏ</button>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="product" data-name="Tôm Hùm Alaska" data-price="2500000">
                         <img src="images/pizza.jpg" alt="Tôm Hùm Alaska">
-                        <p>Pizza</p>
+                        <p>Tôm Hùm Alaska</p>
                         <p>2,500,000 VND</p>
                         <button onclick="addToCart('Tôm Hùm Alaska', 2500000)">Thêm vào giỏ</button>
                     </div>
@@ -123,7 +123,7 @@
             </section>
 
             <section id="desserts">
-                <h2>Tráng miệng</h2>
+                <h2 class="section-title">Tráng miệng</h2>
                 <div class="product-list">
                     <div class="product" data-name="Xoài Chua" data-price="25000">
                         <img src="images/xoai.jpg" alt="Xoài Chua">
@@ -138,28 +138,24 @@
                             <p>25,000 VND</p>
                             <button onclick="addToCart('Nho Tươi', 25000)">Thêm vào giỏ</button>
                         </div>
-                        <div class="product-list">
                             <div class="product" data-name="Dưa Hấu" data-price="25000">
                                 <img src="images/xoai.jpg" alt="Dưa Hấu">
                                 <p>Dưa Hấu</p>
                                 <p>25,000 VND</p>
                                 <button onclick="addToCart('Dưa Hấu', 25000)">Thêm vào giỏ</button>
                             </div>
-                            <div class="product-list">
                                 <div class="product" data-name="Kem Tươi" data-price="25000">
                                     <img src="images/xoai.jpg" alt="Kem Tươi">
                                     <p>Kem Tươi</p>
                                     <p>25,000 VND</p>
                                     <button onclick="addToCart('Kem Tươi', 25000)">Thêm vào giỏ</button>
                                 </div>
-                                <div class="product-list">
                                     <div class="product" data-name="Dừa Non" data-price="25000">
                                         <img src="images/xoai.jpg" alt="Dừa Non">
                                         <p>Dừa Non</p>
                                         <p>25,000 VND</p>
                                         <button onclick="addToCart('Dừa Non', 25000)">Thêm vào giỏ</button>
                                     </div>
-                                    <div class="product-list">
                                         <div class="product" data-name="Dâu Tây" data-price="25000">
                                             <img src="images/xoai.jpg" alt="Dâu Tây">
                                             <p>Dâu Tây</p>
@@ -169,7 +165,6 @@
                 </div>
             </section>
         </main>
-
         <!-- Giỏ hàng bên phải -->
         <aside class="cart">
             <h2>Giỏ hàng</h2>
@@ -181,6 +176,7 @@
                 <option value="qr">Chuyển khoản QR</option>
             </select>
             <button id="checkout" onclick="checkout()">Thanh toán</button>
+            <button id="toggle-cart" onclick="toggleCart()">🛒</button>
         </aside>
     </div>
 
