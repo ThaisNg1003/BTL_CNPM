@@ -170,18 +170,15 @@ header {
     border: 2px solid #d32f2f;
     border-radius: 10px;
 }
-
 .cart h2 {
     text-align: center;
 }
-
 #cart-items {
     list-style: none;
     padding: 0;
     max-height: 250px;
     overflow-y: auto;
 }
-
 #cart-items li {
     display: flex;
     justify-content: space-between;
@@ -189,7 +186,6 @@ header {
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
-
 #cart-items li button {
     background: none;
     border: none;
@@ -197,7 +193,6 @@ header {
     cursor: pointer;
     font-size: 18px;
 }
-
 #cart-items li button:hover {
     color: #b71c1c;
 }
@@ -242,4 +237,41 @@ header {
     .product {
         width: 100%;
     }
+}
+.cart {
+    width: 200px;
+    background: white;
+    padding: 15px;
+    position: fixed;
+    right: 10px;
+    top: 20px;
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    transition: width 0.3s, height 0.3s;
+    overflow: hidden;
+    height: 500px;
+    border-left: 2px solid #d32f2f;
+    transition: transform 0.3s ease-in-out;
+}
+.cart.collapsed {
+    width: 50px;
+    height: 70px;
+    padding: 5px;
+    text-align: center;
+    transform: translateX(10%); /* Ẩn giỏ hàng khi thu nhỏ */
+}
+.cart.collapsed h2,
+.cart.collapsed ul,
+.cart.collapsed #total-price,
+.cart.collapsed #checkout {
+    display: none;
+}
+#toggle-cart {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
